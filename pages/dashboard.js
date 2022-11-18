@@ -41,12 +41,14 @@ export default function Dashboard() {
         <div className='vh-100'>
             <Nav></Nav>
             <div className='container-fluid'>
-                <div className='row'>
+                <div className='row my-2'>
                     <div className='col'>
                         <h3 className='text-dark'>{player.name}</h3>
-                        
-
                     </div>
+                </div>
+
+                <div className='row my-2'>
+                    
                 </div>
             </div>
         </div>

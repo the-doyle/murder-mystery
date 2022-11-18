@@ -5,7 +5,8 @@ import { useEffect, useState } from 'react'
 
 export default function Nav() {
 
-    const user = useUser()
+    const user = useUser();
+    const supabase = useSupabaseClient();
 
     if (!user)
         return (

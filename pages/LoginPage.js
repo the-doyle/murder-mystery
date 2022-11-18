@@ -4,13 +4,13 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
 const LoginPage = () => {
-    const supabaseClient = useSupabaseClient()
+    const supabase = useSupabaseClient()
     const user = useUser()
     const [data, setData] = useState()
 
     useEffect(() => {
       async function loadData() {
-        const { data } = await supabaseClient.from('test').select('*')
+        const { data } = await supabase.from('test').select('*')
         setData(data)
       }
       // Only run query once user is logged in.
@@ -25,7 +25,7 @@ const LoginPage = () => {
 						<Auth
 						redirectTo="http://localhost:3000/"
 						appearance={{ theme: ThemeSupa }}
-						supabaseClient={supabaseClient}
+						supabaseClient={supabase}
 						// providers={['google', 'github']}
 						// socialLayout="horizontal"
 						/>
@@ -37,9 +37,9 @@ const LoginPage = () => {
 	return (
 		<div className='container'>
 			<div className='row'>
-				<div className='col'>
-					<h3 className='text-success text-center'>Welcome, {user.email}</h3>
-					<Link className='btn btn-outline-dark' href='/dashboard'>Player Dashboard</Link>
+				<div className='col text-center'>
+					<h3 className='text-success'>Welcome, {user.email}</h3>
+					<Link className='btn btn-outline-dark' href='/dashboard'>Go to dashboard</Link>
 
 				</div>
 			</div>
