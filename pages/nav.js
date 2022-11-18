@@ -1,29 +1,47 @@
 import Link from 'next/link'
+import { Auth, ThemeSupa } from '@supabase/auth-ui-react'
+import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
+import { useEffect, useState } from 'react'
 
 export default function Nav() {
-    return (
-        <div>
-            <nav className="navbar navbar-expand-lg bg-light">
-                <div className="container-fluid">
-                    <Link className="navbar-brand" href="#">The Lodge at 1818 North</Link>
-                    {/* <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button> */}
-                    {/* <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
-                                <Link className="nav-link active" aria-current="page" href="#">Home</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" href="#">Link</Link>
-                            </li>
-                        </ul>
-                    </div> */}
-                    <div className='d-flex'>
-                        <Link className="nav-link" href="#">Sign in</Link>
+
+    const supabaseClient = useSupabaseClient()
+    const user = useUser()
+    const [data, setData] = useState()
+
+    useEffect(() => {
+        async function loadData() {
+          const { data } = await supabaseClient.from('character').select('*')
+          setData(data)
+        }
+        // Only run query once user is logged in.
+        if (user) loadData()
+      }, [user])
+
+    if (!user)
+        return (
+            <div>
+                <nav className="navbar navbar-expand-lg bg-light">
+                    <div className="container-fluid">
+                        <Link className="navbar-brand" href="#">The Lodge at 1818 North</Link>
+                        <div className='d-flex'>
+                            <Link className="nav-link" href="/LoginPage">Sign in</Link>
+                        </div>
                     </div>
-                </div>
-            </nav>
-        </div>
-    )
+                </nav>
+            </div>
+        )
+
+        return (
+            <div>
+                <nav className="navbar navbar-expand-lg bg-light">
+                    <div className="container-fluid">
+                        <Link className="navbar-brand" href="#">The Lodge at 1818 North</Link>
+                        <div className='d-flex'>
+                            <button className='btn btn-sm btn-outline-dark' onClick={() => supabaseClient.auth.signOut()}>Sign out</button>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        )
 }
