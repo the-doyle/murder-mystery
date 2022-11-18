@@ -39,7 +39,6 @@ export default function Dashboard() {
 
     return (
         <div className='vh-100'>
-            <Nav></Nav>
             <div className='container-fluid'>
                 <div className='row my-2'>
                     <div className='col'>

@@ -2,20 +2,13 @@ import { Auth, ThemeSupa } from '@supabase/auth-ui-react'
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 const LoginPage = () => {
     const supabase = useSupabaseClient()
     const user = useUser()
     const [data, setData] = useState()
-
-    useEffect(() => {
-      async function loadData() {
-        const { data } = await supabase.from('test').select('*')
-        setData(data)
-      }
-      // Only run query once user is logged in.
-      if (user) loadData()
-    }, [user])
+	const router = useRouter()
 
     if (!user)
 		return (
@@ -34,11 +27,13 @@ const LoginPage = () => {
 			</div>
 		)
 
+	router.push('/')
+
 	return (
 		<div className='container'>
 			<div className='row'>
-				<div className='col text-center'>
-					<h3 className='text-success'>Welcome, {user.email}</h3>
+				<div className='col text-center my-5'>
+					<h4 className='text-success'>Welcome, {user.email}</h4>
 					<Link className='btn btn-outline-dark' href='/dashboard'>Go to dashboard</Link>
 
 				</div>

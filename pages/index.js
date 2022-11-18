@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Script from 'next/script'
 import styles from '../styles/Home.module.css'
 import Nav from './nav'
+import Dashboard from './dashboard'
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 
 export default function Home() {
@@ -21,9 +22,7 @@ export default function Home() {
       <main className='vh-100'>
         <Nav></Nav>
         {user
-          ? <div className='text-center my-3'>
-              <Link className='btn btn-outline-dark' href='/dashboard'>Go to dashboard</Link>
-            </div>
+          ? <Dashboard></Dashboard>
           : <p className='my-3 text-center'>Welcome! Sign in to get started. </p>
         }
       </main>
