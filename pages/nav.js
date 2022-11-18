@@ -17,11 +17,11 @@ export default function Nav() {
     if (!user)
         return (
             <div>
-                <nav className="navbar navbar-expand-lg bg-light">
+                <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
                     <div className="container-fluid">
                         <Link className="navbar-brand" href="#">The Lodge at 1818 North</Link>
                         <div className='d-flex'>
-                            <Link className="nav-link" href="/LoginPage">Sign in</Link>
+                            <Link className="btn btn-sm btn-outline-light" href="/LoginPage">Sign in</Link>
                         </div>
                     </div>
                 </nav>
@@ -30,11 +30,11 @@ export default function Nav() {
 
         return (
             <div>
-                <nav className="navbar navbar-expand-lg bg-light">
+                <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
                     <div className="container-fluid">
                         <Link className="navbar-brand" href="#">The Lodge at 1818 North</Link>
                         <div className='d-flex'>
-                            <button className='btn btn-sm btn-outline-dark' onClick={() => signOut()}>Sign out</button>
+                            <button className='btn btn-sm btn-outline-light' onClick={() => signOut()}>Sign out</button>
                         </div>
                     </div>
                 </nav>
