@@ -47,8 +47,8 @@ export default function Dashboard() {
                 </div>
 
                 <div className='row my-2'>
-                    <div className='col-1'/>
-                    <div className='col-10 bg-light shadow rounded-3 p-3 text-center'>
+                    {/* <div className='col-1'/> */}
+                    <div className='col bg-light shadow rounded-3 p-3 text-center'>
                         <p className='fs-5 text-center'>Quick Actions</p>
                         <div className='d-flex justify-content-evenly'>
                             <Link className='btn btn-sm btn-outline-dark p-2' href='/api/addItem'>Add item</Link>
@@ -56,7 +56,7 @@ export default function Dashboard() {
                             <Link className='btn btn-sm btn-danger p-2' href='/api/murder'>Murder someone</Link>
                         </div>
                     </div>
-                    <div className='col-1'/>
+                    {/* <div className='col-1'/> */}
                 </div>
             </div>
         </div>
