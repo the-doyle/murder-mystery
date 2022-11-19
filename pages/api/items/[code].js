@@ -1,7 +1,7 @@
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 
 export default function handler(req, res) {
-    const supabase = useSupabaseClient()
+    // const supabase = useSupabaseClient()
 
     // const { code } = router.query
     
