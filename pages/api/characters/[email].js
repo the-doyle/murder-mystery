@@ -14,13 +14,22 @@ export default async function handler(req, res) {
     ({ data, error } = await supabase
         .from('Item')
         .select('*')    
-        .in('code', player.items))
+        // .in('code', player.items)
+        )
 
-    let items = data 
+    let items = data; 
+
+    ({ data, error } = await supabase
+        .from('Character')
+        .select('*')    
+        .in('code', player.rooms))
+
+    let rooms = data 
 
     const response = {
         'player': player,
-        'items': items 
+        'items': items,
+        'rooms': rooms
     }
     
     res.status(200).json(response)

@@ -1,10 +1,7 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
-import Script from 'next/script'
 import styles from '../styles/Home.module.css'
-import Nav from './nav'
-import Dashboard from './dashboard'
+import Nav from './Nav'
+import Dashboard from './Dashboard'
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 
 export default function Home() {
@@ -19,7 +16,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className='vh-100'>
+      <main className='min-vh-100'>
         <Nav></Nav>
         {user
           ? <Dashboard></Dashboard>

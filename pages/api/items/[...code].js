@@ -49,10 +49,7 @@ export default async function handler(req, res) {
             .update({ items: newItems })
             .eq('email', char.email)
 
-        response['message'] = "Success"
-        // response['newItems'] = newItems
-        // response['itemCode'] = item.code
-
+        response['message'] = "Success! Item added."
         res.status(200).json(response)
     }
 }
