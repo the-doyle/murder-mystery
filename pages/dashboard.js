@@ -65,7 +65,7 @@ export default function Dashboard() {
                     </div>  
                 </div>
             
-                <div className='row my-2 bg-light shadow rounded-3 p-3 '>
+                <div className='row my-2 bg-light shadow rounded-3 p-3'>
                     <div className='col-12'>
                         <p className='fs-6 text-center fw-bold text-dark'>Quick Actions</p>
                     </div>
@@ -95,7 +95,7 @@ export default function Dashboard() {
                                     ))} 
                                 </ul>
                             :
-                                <p className='text-muted text-center my-3'>You don't have any items yet</p>
+                                <p className='text-muted text-center my-3'>No items yet</p>
 
                         }
 
