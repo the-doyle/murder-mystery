@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import Nav from './nav'
-import Dashboard from './dashboard'
+import Nav from './Nav'
+import Dashboard from './Dashboard'
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 
 export default function Home() {
