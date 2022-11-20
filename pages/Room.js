@@ -1,5 +1,12 @@
 export default function Room(props) {
 
+    if (!props.player) {
+        return (<p>Hello there</p>)
+    }
+    if (!props.items) {
+        return (<p>Hello there</p>)
+    }
+
     const playerItems = props.items.filter(item => props.player.items.includes(item.code));
     
     return (
