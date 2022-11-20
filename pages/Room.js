@@ -1,8 +1,6 @@
 export default function Room(props) {
-
-    const playerItems = props.items.filter(item => props.player.items.includes(item.code));
     
-    return (
+    return !props.items ? null : (
 
         <div className='col bg-light shadow rounded-3 p-3'>
             <p className='fs-6 text-center fw-bold text-dark'>{props.player.name}</p>
@@ -18,7 +16,8 @@ export default function Room(props) {
                             </tr>
                         </thead>
                         <tbody>
-                            {playerItems
+                            {props.items
+                                .filter(item => props.player.items.includes(item.code))
                                 .map(item => (
                                     <tr key={item.id}>
                                         <td>{item.description}</td>

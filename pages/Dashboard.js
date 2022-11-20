@@ -64,7 +64,7 @@ export default function Dashboard() {
             })
     }
 
-    return (
+    return !items ? null : (
         <div>
             <div className='container-fluid'>
                 <div className='row my-2 p-3'>
