@@ -14,7 +14,6 @@ export default async function handler(req, res) {
     ({ data, error } = await supabase
         .from('Item')
         .select('*')    
-        // .in('code', player.items)
         )
 
     let items = data; 
@@ -22,9 +21,12 @@ export default async function handler(req, res) {
     ({ data, error } = await supabase
         .from('Character')
         .select('*')    
-        .in('code', player.rooms))
+        // .in('code', player.rooms)
+        )
 
     let rooms = data 
+    
+
 
     const response = {
         'player': player,

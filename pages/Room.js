@@ -2,7 +2,7 @@ export default function Room(props) {
     
     return !props.items ? null : (
 
-        <div className='col bg-light shadow rounded-3 p-3'>
+        <div className='col-12 bg-light shadow rounded-3 p-3 my-2'>
             <p className='fs-6 text-center fw-bold text-dark'>{props.player.name}</p>
 
             {props.items.length > 0
@@ -21,8 +21,8 @@ export default function Room(props) {
                                 .map(item => (
                                     <tr key={item.id}>
                                         <td>{item.description}</td>
-                                        <td><span className="badge bg-danger mx-1">{item.type}</span></td>
-                                        <td><span className="badge bg-dark mx-1">{item.rating} / 10</span></td>
+                                        <td><span className={item.type==='weapon' ? "badge rounded-pill bg-danger mx-1" : "badge rounded-pill bg-dark mx-1" }>{item.type}</span></td>
+                                        <td><span className="badge rounded-pill bg-secondary mx-1">{item.rating} / 10</span></td>
                                     </tr>
                                 ))
                             } 

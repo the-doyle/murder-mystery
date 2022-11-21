@@ -24,8 +24,8 @@ export default function Home() {
         }
       </main>
 
-      <footer className={styles.footer}>
-        <p>2022 Ben Doyle</p>
+      <footer className='container-fluid mt-5 border-top text-center text-muted'>
+        <p className='my-3'>2022 | The Lodge at 1818 North</p>
       </footer>
     </div>
   )

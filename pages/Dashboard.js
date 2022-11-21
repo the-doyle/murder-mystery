@@ -1,6 +1,9 @@
 import { useUser } from '@supabase/auth-helpers-react'
 import { useEffect, useState } from 'react'
 import Room from './Room'
+import PlayerRow from './PlayerRow'
+import ItemRow from './ItemRow'
+import Summary from './Summary'
 
 export default function Dashboard() {
     const user = useUser()
@@ -16,10 +19,6 @@ export default function Dashboard() {
         GetCharacter() 
     }, [])
 
-    function hideAlert() {
-        setAlertClass("d-none")
-    }
-
     const itemChangeHandler = e => {
         setItemCode(e.target.value)
     }
@@ -32,7 +31,9 @@ export default function Dashboard() {
             .then((data) => {
                 setAlertClass("")
                 setAlert(data.message)
-                GetCharacter() 
+                if (data.message === "Success! Item added.") {
+                    GetCharacter() 
+                }
             }
         )
     }
@@ -49,7 +50,9 @@ export default function Dashboard() {
             .then((data) => {
                 setAlertClass("")
                 setAlert(data.message)
-                GetCharacter() 
+                if (data.message === "Success! Room added.") {
+                    GetCharacter() 
+                }
             }
         )
     }
@@ -69,7 +72,7 @@ export default function Dashboard() {
             <div className='container-fluid'>
                 <div className='row my-2 p-3'>
                     <div className='col'>
-                        <h3 className='text-danger'>{player.name}</h3>
+                        <h2 className='text-dark text-center'>{player.name}</h2>
                     </div>
                 </div>
 
@@ -77,11 +80,11 @@ export default function Dashboard() {
                 <div className={alertClass}>
                     <div className="alert alert-success alert-dismissible fade show" role="alert">
                         {alert}
-                        <button type="button" className="btn-close" aria-label="Close" onClick={() => hideAlert()}></button>    
+                        <button type="button" className="btn-close" aria-label="Close" onClick={() => setAlertClass("d-none")}></button>    
                     </div>  
                 </div>
             
-                <div className='row my-5 p-3'>
+                <div className='row mb-5 p-3'>
                     <div className='col-12 mb-2'>
                         <h4>Quick Actions</h4>
                     </div>
@@ -112,13 +115,13 @@ export default function Dashboard() {
 
                 <div className='row my-3 p-3'>
                     <div className='col-12 mb-2'>
-                        <h4>My Room</h4>
+                        <h4>My Stuff</h4>
                     </div>
 
                     <Room items={items} player={player}></Room>
                 </div>
 
-                <div className='row my-5 p-3'>
+                <div className='row my-3 p-3'>
                     <div className='col-12 mb-2'>
                         <h4>Unlocked Rooms</h4>
                     </div>
@@ -134,6 +137,9 @@ export default function Dashboard() {
                             <p className='text-muted text-center my-3'>No unlocked rooms yet. Find a room code to add one!</p>
                     }
                 </div>
+
+                <Summary player={player} items={items} rooms={rooms}></Summary>
+
             </div>
         </div>
     )
