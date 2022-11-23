@@ -20,10 +20,6 @@ export default function Dashboard() {
     const[targets, setTargets] = useState([]) 
     const[murders, setMurders] = useState([]) 
 
-    useEffect(() => {
-        GetCharacter() 
-    }, [])
-
     const refreshCharacter = () => {
         GetCharacter()
     };
@@ -97,6 +93,10 @@ export default function Dashboard() {
                         )))
             })
     }
+
+    useEffect(() => {
+        GetCharacter() 
+    }, [])
 
     return !items ? null : (
         <div>

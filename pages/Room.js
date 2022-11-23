@@ -7,7 +7,7 @@ export default function Room(props) {
                 {props.player.name}
                 {props.player.isDead
                     ? <span className='text-danger fst-italic'> (murdered)</span>
-                    : <span className='text-light'>'</span>
+                    : <span className='text-light'>.</span>
                 
                 }
             </p>

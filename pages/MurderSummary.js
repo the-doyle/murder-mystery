@@ -46,7 +46,7 @@ export default function MurderSummary(props) {
                     {
                         props.murders
                             .map(murder => (
-                                <div className='col-12 p-3 bg-light shadow rounded-3 my-3'>
+                                <div key={murder} className='col-12 p-3 bg-light shadow rounded-3 my-3'>
                                     <p className='text-danger fs-5'>
                                         <span className='fw-bold'>{murder.targetName} </span>
                                         has been murdered! 
@@ -57,7 +57,7 @@ export default function MurderSummary(props) {
                                     <ul>
                                         {murder.suspects
                                             .map(suspect => (
-                                                <li>{suspect}</li>
+                                                <li key={suspect}>{suspect}</li>
                                             ))
                                         }
                                     </ul>
