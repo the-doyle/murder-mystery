@@ -1,9 +1,9 @@
 import { useUser } from '@supabase/auth-helpers-react'
 import { useEffect, useState } from 'react'
 import Room from './Room'
-import PlayerRow from './PlayerRow'
-import ItemRow from './ItemRow'
 import Summary from './Summary'
+import Murder from './Murder'
+import MurderSummary from './MurderSummary'
 
 export default function Dashboard() {
     const user = useUser()
@@ -15,9 +15,18 @@ export default function Dashboard() {
     const [itemCode, setItemCode] = useState()
     const [roomCode, setRoomCode] = useState()
 
+    const[weapons, setWeapons] = useState([])
+    const[diversions, setDiversions] = useState([])
+    const[targets, setTargets] = useState([]) 
+    const[murders, setMurders] = useState([]) 
+
     useEffect(() => {
         GetCharacter() 
     }, [])
+
+    const refreshCharacter = () => {
+        GetCharacter()
+    };
 
     const itemChangeHandler = e => {
         setItemCode(e.target.value)
@@ -64,6 +73,28 @@ export default function Dashboard() {
                 setPlayer(data.player)
                 setItems(data.items)
                 setRooms(data.rooms)
+                setMurders(data.murders)
+
+                setTargets(
+                    data.rooms
+                        .filter(target => data.player.rooms.includes(target.code) && !target.isDead)
+                        .map(target => (
+                            <option key={target.email} value={target.email}>{target.name}</option>
+                        )))
+
+                setWeapons( 
+                    data.items
+                        .filter(item => data.player.items.includes(item.code) && item.type == 'weapon' && !data.player.usedItems.includes(item.code))
+                        .map(weapon => (
+                            <option key={weapon.code} value={weapon.code}>{weapon.description}</option>
+                        )))
+
+                setDiversions(
+                    data.items
+                        .filter(item => data.player.items.includes(item.code) && item.type == 'diversion' && !data.player.usedItems.includes(item.code))
+                        .map(diversion => (
+                            <option key={diversion.code} value={diversion.code}>{diversion.description}</option>
+                        )))
             })
     }
 
@@ -109,6 +140,23 @@ export default function Dashboard() {
                                 </form>
                             </div>
 
+                            {weapons.length>0 && diversions.length>0 && targets.length>0 && player
+                                ?   <Murder 
+                                        key={weapons.length}
+                                        player={player} 
+                                        weapons={weapons} 
+                                        diversions={diversions} 
+                                        targets={targets} 
+                                        refreshCharacter={refreshCharacter}>
+                                    </Murder>
+                                : 
+                                    <div className='col-12 mt-5'>
+                                        <button type="button" className="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#murder" disabled>
+                                            Murder someone
+                                        </button>
+                                    </div>
+                            }
+
                         </div>
                     </div>
                 </div>
@@ -118,7 +166,7 @@ export default function Dashboard() {
                         <h4>My Stuff</h4>
                     </div>
 
-                    <Room items={items} player={player}></Room>
+                    <Room items={items} player={player} disableUsed={true}></Room>
                 </div>
 
                 <div className='row my-3 p-3'>
@@ -137,6 +185,8 @@ export default function Dashboard() {
                             <p className='text-muted text-center my-3'>No unlocked rooms yet. Find a room code to add one!</p>
                     }
                 </div>
+
+                <MurderSummary murders={murders}></MurderSummary>
 
                 <Summary player={player} items={items} rooms={rooms}></Summary>
 

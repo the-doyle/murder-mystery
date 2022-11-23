@@ -3,7 +3,14 @@ export default function Room(props) {
     return !props.items ? null : (
 
         <div className='col-12 bg-light shadow rounded-3 p-3 my-2'>
-            <p className='fs-6 text-center fw-bold text-dark'>{props.player.name}</p>
+            <p className='fs-6 text-center fw-bold text-dark'>
+                {props.player.name}
+                {props.player.isDead
+                    ? <span className='text-danger fst-italic'> (murdered)</span>
+                    : <span className='text-light'>'</span>
+                
+                }
+            </p>
 
             {props.items.length > 0
                 ? 
@@ -20,8 +27,11 @@ export default function Room(props) {
                                 .filter(item => props.player.items.includes(item.code))
                                 .map(item => (
                                     <tr key={item.id}>
-                                        <td>{item.description}</td>
-                                        <td><span className={item.type==='weapon' ? "badge rounded-pill bg-danger mx-1" : "badge rounded-pill bg-dark mx-1" }>{item.type}</span></td>
+                                        {props.player.usedItems.includes(item.code) && props.disableUsed
+                                            ? <td className='text-muted'>{item.description} <span className="badge rounded-pill bg-secondary mx-1">used</span></td>
+                                            : <td>{item.description}</td>
+                                        }
+                                        <td><span className={item.type==='weapon' ? "badge rounded-pill bg-danger mx-1" : "badge rounded-pill bg-info mx-1" }>{item.type}</span></td>
                                         <td><span className="badge rounded-pill bg-secondary mx-1">{item.rating} / 10</span></td>
                                     </tr>
                                 ))

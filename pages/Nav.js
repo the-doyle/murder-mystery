@@ -19,7 +19,7 @@ export default function Nav() {
             <div>
                 <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
                     <div className="container-fluid">
-                        <Link className="navbar-brand" href="#">The Lodge at 1818 North</Link>
+                        <Link className="navbar-brand" href="/">The Lodge at 1818 North</Link>
                         <div className='d-flex'>
                             <Link className="btn btn-sm btn-outline-light" href="/LoginPage">Sign in</Link>
                         </div>
@@ -32,7 +32,7 @@ export default function Nav() {
             <div>
                 <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
                     <div className="container-fluid">
-                        <Link className="navbar-brand" href="#">The Lodge at 1818 North</Link>
+                        <Link className="navbar-brand" href="/">The Lodge at 1818 North</Link>
                         <div className='d-flex'>
                             <button className='btn btn-sm btn-outline-light' onClick={() => signOut()}>Sign out</button>
                         </div>

@@ -2,36 +2,38 @@ import { supabase } from "../../../supabase"
 
 export default async function handler(req, res) {
     
-    let { data, error } = await supabase
+    let { data: cData, error: eData } = await supabase
         .from('Character')
         .select('*')
         .eq('email', req.query.email)
         .limit(1)
         .single()
 
-    let player = data;
+    let player = cData;
 
-    ({ data, error } = await supabase
+    const { data: iData, error: iError } = await supabase
         .from('Item')
         .select('*')    
-        )
 
-    let items = data; 
+    let items = iData; 
 
-    ({ data, error } = await supabase
+    const { data: rData, error: rError } = await supabase
         .from('Character')
         .select('*')    
-        // .in('code', player.rooms)
-        )
+        
+    let rooms = rData; 
 
-    let rooms = data 
+    const {data: mData, error: mError} = await supabase
+        .from('Murders')
+        .select('*')
+
+    let murders = mData;
     
-
-
     const response = {
         'player': player,
         'items': items,
-        'rooms': rooms
+        'rooms': rooms,
+        'murders': murders
     }
     
     res.status(200).json(response)

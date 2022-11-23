@@ -28,7 +28,7 @@ export default function Summary(props) {
 
             <div className='text-center '>
                 <button 
-                    class={buttonClass} 
+                    className={buttonClass} 
                     type="button" 
                     data-bs-toggle="collapse" 
                     data-bs-target="#summary" 
@@ -64,7 +64,7 @@ export default function Summary(props) {
                                                 <PlayerRow key={room.id} player={room}></PlayerRow>
                                             ))
                                     :
-                                        <p className='text-muted text-center my-3'>Loading...</p>
+                                        <tr><td className='text-muted text-center my-3'>Loading...</td></tr>
                                 }
                             </tbody>
                         </table>
@@ -94,7 +94,8 @@ export default function Summary(props) {
                                                 <ItemRow key={item.id} item={item}></ItemRow>
                                             ))
                                     :
-                                        <p className='text-muted text-center my-3'>Loading...</p>
+
+                                        <tr><td className='text-muted text-center my-3'>Loading...</td></tr>
                                 }
                             </tbody>
                         </table>
