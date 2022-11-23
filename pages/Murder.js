@@ -60,7 +60,7 @@ export default function Murder(props) {
         }
     }
 
-    return (
+    return !props.targets ? null :(
         <div>
             <div className='col-12 mt-5'>
                 <button type="button" className="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#murder" disabled={!murderEnabled}>
