@@ -15,10 +15,10 @@ export default function Dashboard() {
     const [itemCode, setItemCode] = useState()
     const [roomCode, setRoomCode] = useState()
 
-    const[weapons, setWeapons] = useState([])
-    const[diversions, setDiversions] = useState([])
-    const[targets, setTargets] = useState([]) 
-    const[murders, setMurders] = useState([]) 
+    const[weapons, setWeapons] = useState()
+    const[diversions, setDiversions] = useState()
+    const[targets, setTargets] = useState() 
+    const[murders, setMurders] = useState() 
 
     const refreshCharacter = () => {
         GetCharacter()

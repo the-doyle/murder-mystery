@@ -27,10 +27,6 @@ export default function Murder(props) {
         setTarget(e.target.value)
     }
 
-    // useEffect(() => {
-    //     changeMurderData(false);
-    //   }, []);
-
     const murderHandler = async(e) => {
         e.preventDefault();
         
