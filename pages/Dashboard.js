@@ -15,10 +15,10 @@ export default function Dashboard() {
     const [itemCode, setItemCode] = useState()
     const [roomCode, setRoomCode] = useState()
 
-    const[weapons, setWeapons] = useState(null)
-    const[diversions, setDiversions] = useState(null)
-    const[targets, setTargets] = useState(null) 
-    const[murders, setMurders] = useState(null) 
+    const[weapons, setWeapons] = useState([])
+    const[diversions, setDiversions] = useState([])
+    const[targets, setTargets] = useState([]) 
+    const[murders, setMurders] = useState([]) 
 
     const refreshCharacter = () => {
         GetCharacter()
@@ -140,7 +140,7 @@ export default function Dashboard() {
                                 </form>
                             </div>
 
-                            {weapons != null && diversions != null && targets != null && player != null
+                            {weapons != [] && diversions != [] && targets != [] && player != []
                                 ?   <Murder 
                                         player={player} 
                                         weapons={weapons} 
