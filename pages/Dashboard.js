@@ -140,7 +140,7 @@ export default function Dashboard() {
                                 </form>
                             </div>
 
-                            {weapons && weapons.length > 0 && diversions && diversions.length > 0 && targets && targets.length > 0 && player
+                            {weapons != null && diversions != null && targets != null && player != null
                                 ?   <Murder 
                                         player={player} 
                                         weapons={weapons} 
