@@ -4,8 +4,6 @@ export default async function handler(req, res) {
 
     let response = {}
 
-
-
     // make sure target hasn't been killed already
     const { data: tDeadData, error: tDeadError } = await supabase
         .from('Character')
@@ -88,7 +86,7 @@ export default async function handler(req, res) {
         const { data: acData, error: acError } = await supabase
             .from('Character')
             .select('name')
-            .filter('name', 'not.in', `("${murderer.name}","${tData.name}")`)
+            .filter('email', 'not.in', `("${req.body.target}","${req.body.murderer}")`)
 
         let allCharacters = acData;
         let acArray = allCharacters.map(a => a.name);
