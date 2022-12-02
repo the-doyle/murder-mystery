@@ -145,7 +145,6 @@ export default function Dashboard() {
 
                             {weapons.length>0 && diversions.length>0 && targets.length>0 && player
                                 ?   <Murder 
-                                        key={weapons.length}
                                         player={player} 
                                         weapons={weapons} 
                                         diversions={diversions} 
