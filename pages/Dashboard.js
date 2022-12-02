@@ -89,14 +89,14 @@ export default function Dashboard() {
                     data.items
                         .filter(item => data.player.items.includes(item.code) && item.type == 'weapon' && !data.player.usedItems.includes(item.code))
                         .map(weapon => (
-                            <option key={weapon.code} value={weapon.code}>{weapon.description}</option>
+                            <option key={weapon.code} value={weapon.code}>{weapon.description} ({weapon.rating}/10)</option>
                         )))
 
                 setDiversions(
                     data.items
                         .filter(item => data.player.items.includes(item.code) && item.type == 'diversion' && !data.player.usedItems.includes(item.code))
                         .map(diversion => (
-                            <option key={diversion.code} value={diversion.code}>{diversion.description}</option>
+                            <option key={diversion.code} value={diversion.code}>{diversion.description} ({diversion.rating}/10)</option>
                         )))
             })
     }
@@ -152,7 +152,7 @@ export default function Dashboard() {
                                         refreshCharacter={refreshCharacter}>
                                     </Murder>
                                 : 
-                                    <div className='col-12 mt-5'>
+                                    <div className='col-12 mt-3'>
                                         <button type="button" className="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#murder" disabled>
                                             Murder someone
                                         </button>

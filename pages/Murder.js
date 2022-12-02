@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 
 export default function Murder(props) {
@@ -25,9 +24,11 @@ export default function Murder(props) {
 
     const weaponHandler = e => {
         setWeapon(e.target.value)
+        setWeaponRating(e.target[e.target.selectedIndex].getAttribute('data-rating'))
     }
     const diversionHandler = e => {
         setDiversion(e.target.value)
+        setDiversionRating(e.target[e.target.selectedIndex].getAttribute('data-rating'))
     }
     const targetHandler = e => {
         setTarget(e.target.value)
@@ -51,20 +52,18 @@ export default function Murder(props) {
 
         const result = await res.json();
 
-        if (result.message === "Murder accomplished. Now, can you get away with it?") {
-            setMurderAlert(result.message)
-            setMurderAlertClass('mt-3')
-            setModalFooter(
-                <div className="modal-footer">
-                    <button type="button" className="btn btn-outline-dark" data-bs-dismiss="modal" onClick={() => refreshCharacter()}>Close</button>
-                </div>
-            )
-        }
+        setMurderAlert(result.message)
+        setMurderAlertClass('mt-3')
+        setModalFooter(
+            <div className="modal-footer">
+                <button type="button" className="btn btn-outline-dark" data-bs-dismiss="modal" onClick={() => refreshCharacter()}>Close</button>
+            </div>
+        )
     }
 
     return !props.diversions ? null : (
         <div>
-            <div className='col-12 mt-5'>
+            <div className='col-12 mt-3'>
                 <button type="button" className="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#murder" disabled={!murderEnabled}>
                 Murder someone
                 </button>
@@ -81,13 +80,17 @@ export default function Murder(props) {
                                 <p>♫ <span className="fst-italic mb-3"> Suspensful music... </span>♫</p>
 
                                 <form id='murderForm' onSubmit={murderHandler}> 
-                                    <select onChange={targetHandler} className="form-select my-2" id="target">
+                                    <label for="target" class="form-label text-muted">Target</label>
+                                    <select onChange={targetHandler} className="form-select mb-3" id="target">
                                         {props.targets}
                                     </select>
-                                    <select onChange={weaponHandler} className="form-select my-2" id="weapon" >
+
+                                    <label for="weapon" class="form-label text-muted">Weapon</label>
+                                    <select onChange={weaponHandler} className="form-select mb-3" id="weapon" >
                                         {props.weapons}
                                     </select>
-                                    <select onChange={diversionHandler} className="form-select my-2" id="diversion">
+                                    <label for="diversion" class="form-label text-muted">Diversion</label>
+                                    <select onChange={diversionHandler} className="form-select" id="diversion">
                                         {props.diversions}
                                     </select>
                                     <input id='murderer' value={props.player.id} readOnly hidden></input>

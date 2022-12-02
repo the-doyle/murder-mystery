@@ -19,7 +19,7 @@ export default function MurderSummary(props) {
         }
     }
 
-    return !props.murders ? <p className='text-center fw-bold text-danger'>No murders yet!</p> : (
+    return props.murders.length === 0 ? <p className='text-center fw-bold text-danger'>No murders yet!</p> : (
 
         <div>
             <div className='text-center my-3'>
@@ -46,7 +46,7 @@ export default function MurderSummary(props) {
                     {
                         props.murders
                             .map(murder => (
-                                <div key={murder} className='col-12 p-3 bg-light shadow rounded-3 my-3'>
+                                <div key={murder.id} className='col-12 p-3 bg-light shadow rounded-3 my-3'>
                                     <p className='text-danger fs-5'>
                                         <span className='fw-bold'>{murder.targetName} </span>
                                         has been murdered! 
@@ -56,6 +56,7 @@ export default function MurderSummary(props) {
                                     <p className='fw-bold'>Suspects:</p>
                                     <ul>
                                         {murder.suspects
+                                            .sort((a,b) => (a > b) ? 1 : ((b > a) ? -1 : 0))
                                             .map(suspect => (
                                                 <li key={suspect}>{suspect}</li>
                                             ))
