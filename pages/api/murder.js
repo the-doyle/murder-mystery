@@ -102,8 +102,6 @@ export default async function handler(req, res) {
             murderer: murderer.name
         })
 
-    console.log(outcome)
-
     response['message'] = "Murder accomplished. Now, can you get away with it?"
     res.status(200).json(response)
 }

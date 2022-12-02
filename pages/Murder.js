@@ -3,10 +3,16 @@ import { useState } from 'react'
 
 export default function Murder(props) {
 
-    const murderEnabled = (props.targets.length > 0 && props.weapons.length > 0 && props.diversions.length > 0)
-    const[weapon, setWeapon] = useState(props.weapons[0].key)
-    const[diversion, setDiversion] = useState(props.diversions[0].key)
-    const[target, setTarget] = useState(props.targets[0].key)
+    let murderEnabled = false 
+
+    if (props.weapons && props.diversions && props.targets && props.player) {
+        murderEnabled = (props.targets.length > 0 && props.weapons.length > 0 && props.diversions.length > 0)
+    }
+
+    const[weapon, setWeapon] = useState(props.weapons ? props.weapons[0].key : null)
+    const[diversion, setDiversion] = useState(props.diversions ? props.diversions[0].key : null)
+    const[target, setTarget] = useState(props.targets ? props.targets[0].key : null)
+
     const[murderAlertClass, setMurderAlertClass] = useState('my-2 d-none')
     const[modalFooter, setModalFooter] = useState(
         <div className="modal-footer">
