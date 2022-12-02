@@ -24,11 +24,9 @@ export default function Murder(props) {
 
     const weaponHandler = e => {
         setWeapon(e.target.value)
-        setWeaponRating(e.target[e.target.selectedIndex].getAttribute('data-rating'))
     }
     const diversionHandler = e => {
         setDiversion(e.target.value)
-        setDiversionRating(e.target[e.target.selectedIndex].getAttribute('data-rating'))
     }
     const targetHandler = e => {
         setTarget(e.target.value)

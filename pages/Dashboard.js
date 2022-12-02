@@ -188,7 +188,10 @@ export default function Dashboard() {
                     }
                 </div>
 
-                <MurderSummary murders={murders}></MurderSummary>
+                {murders.length > 0 
+                    ? <MurderSummary murders={murders}></MurderSummary>
+                    : <p className='text-center fw-bold text-danger'>No murders yet!</p> 
+                }
 
                 <Summary player={player} items={items} rooms={rooms}></Summary>
 

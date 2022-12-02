@@ -19,7 +19,7 @@ export default function MurderSummary(props) {
         }
     }
 
-    return props.murders.length === 0 ? <p className='text-center fw-bold text-danger'>No murders yet!</p> : (
+    return !props.murders ? null : (
 
         <div>
             <div className='text-center my-3'>
