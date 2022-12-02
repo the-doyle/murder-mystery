@@ -10,7 +10,7 @@ import MurderSummary from './MurderSummary'
 export default function Dashboard() {
     const user = useUser()
     const [rooms, setRooms] = useState([])
-    const [player, setPlayer] = useState("Ben Doyle")
+    const [player, setPlayer] = useState({'rooms': []})
     const [items, setItems] = useState([])
     const[alert, setAlert] = useState()
     const[alertClass, setAlertClass] = useState("d-none")
@@ -176,7 +176,7 @@ export default function Dashboard() {
                         <h4>Unlocked Rooms</h4>
                     </div>
 
-                    {player.rooms
+                    {player.rooms.length > 0
                         ? 
                             rooms
                                 .filter(room => player.rooms.includes(room.code))
