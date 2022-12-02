@@ -1,5 +1,4 @@
-import { useUser } from '@supabase/auth-helpers-react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import PlayerRow from './PlayerRow'
 import ItemRow from './ItemRow'
 
@@ -89,7 +88,8 @@ export default function Summary(props) {
                                 {props.items
                                     ? 
                                         props.items
-                                            .sort((a,b) => (a.type > b.type) ? 1 : ((b.type > a.type) ? -1 : 0))
+                                            .filter(item => ['diversion', 'weapon'].includes(item.type))
+                                            .sort((a, b) => a.type.localeCompare(b.type) || a.rating - b.rating)
                                             .map(item => (
                                                 <ItemRow key={item.id} item={item}></ItemRow>
                                             ))
