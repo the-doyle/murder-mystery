@@ -57,7 +57,7 @@ export default function Murder(props) {
     return !props.playerItems ? null : (
         <div className='col-6 mt-3'>
             <div className='col-6'>
-                <button type="button" className="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#transfer" disabled={!transferEnabled}>
+                <button type="button" className="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#transfer" disabled={!transferEnabled}>
                 Transfer item
                 </button>
             </div>

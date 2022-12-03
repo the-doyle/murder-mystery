@@ -147,7 +147,7 @@ export default function Dashboard() {
                                     <div className="mb-3">
                                         <input onChange={itemChangeHandler} type="text" className="form-control" id="itemCode" placeholder="e.g. 1234"></input>
                                     </div>
-                                    <button type="submit" className="btn btn-outline-dark">Add Item</button>
+                                    <button type="submit" className="btn btn-sm btn-outline-dark">Add Item</button>
                                 </form>
                             </div>
 
@@ -156,7 +156,7 @@ export default function Dashboard() {
                                     <div className="mb-3">
                                         <input onChange={roomChangeHandler} type="text" className="form-control" id="roomCode" placeholder="e.g. 5678"></input>
                                     </div>
-                                    <button type="submit" className="btn btn-outline-dark">Add Room</button>
+                                    <button type="submit" className="btn btn-sm btn-outline-dark">Add Room</button>
                                 </form>
                             </div>
 
@@ -170,7 +170,7 @@ export default function Dashboard() {
                                     </Murder>
                                 : 
                                     <div className='col-6 mt-3'>
-                                        <button type="button" className="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#murder" disabled>
+                                        <button type="button" className="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#murder" disabled>
                                             Murder someone
                                         </button>
                                     </div>
@@ -185,7 +185,7 @@ export default function Dashboard() {
                                     </Transfer>
                                 : 
                                     <div className='col-6 mt-3'>
-                                        <button type="button" className="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#transfer" disabled>
+                                        <button type="button" className="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#transfer" disabled>
                                             Transfer item
                                         </button>
                                     </div>
