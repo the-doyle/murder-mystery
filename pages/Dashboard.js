@@ -1,11 +1,10 @@
 import { useUser } from '@supabase/auth-helpers-react'
 import { useEffect, useState } from 'react'
 import Room from './Room'
-import PlayerRow from './PlayerRow'
-import ItemRow from './ItemRow'
 import Summary from './Summary'
 import Murder from './Murder'
 import MurderSummary from './MurderSummary'
+import Transfer from './Transfer'
 
 export default function Dashboard() {
     const user = useUser()
@@ -21,6 +20,10 @@ export default function Dashboard() {
     const[diversions, setDiversions] = useState([])
     const[targets, setTargets] = useState([]) 
     const[murders, setMurders] = useState([])
+
+    const[playerItems, setPlayerItems] = useState([])
+    const[transferTargets, setTransferTargets] = useState([])
+
     
     const refreshCharacter = () => {
         GetCharacter()
@@ -98,6 +101,20 @@ export default function Dashboard() {
                         .map(diversion => (
                             <option key={diversion.code} value={diversion.code}>{diversion.description} ({diversion.rating}/10)</option>
                         )))
+
+                setPlayerItems(
+                    data.items
+                        .filter(item => data.player.items.includes(item.code) && item.type != 'cash' && !data.player.usedItems.includes(item.code))
+                        .map(item => (
+                            <option key={item.code} value={item.code}>{item.description}</option>
+                        )))
+
+                setTransferTargets(
+                    data.rooms
+                        .sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
+                        .map(target => (
+                            <option key={target.email} value={target.email}>{target.name}</option>
+                        )))
             })
     }
 
@@ -118,7 +135,7 @@ export default function Dashboard() {
                     </div>  
                 </div>
             
-                <div className='row mb-5 p-3'>
+                <div className='row mb-4 p-3'>
                     <div className='col-12 mb-3'>
                         <h4>Quick Actions</h4>
                     </div>
@@ -152,9 +169,24 @@ export default function Dashboard() {
                                         refreshCharacter={refreshCharacter}>
                                     </Murder>
                                 : 
-                                    <div className='col-12 mt-3'>
+                                    <div className='col-6 mt-3'>
                                         <button type="button" className="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#murder" disabled>
                                             Murder someone
+                                        </button>
+                                    </div>
+                            }
+
+                            {playerItems.length>0 && rooms.length>0 && player
+                                ?   <Transfer 
+                                        player={player} 
+                                        rooms={transferTargets} 
+                                        playerItems={playerItems}
+                                        refreshCharacter={refreshCharacter}>
+                                    </Transfer>
+                                : 
+                                    <div className='col-6 mt-3'>
+                                        <button type="button" className="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#transfer" disabled>
+                                            Transfer item
                                         </button>
                                     </div>
                             }
@@ -207,8 +239,12 @@ export default function Dashboard() {
                 </div>
 
                 {murders.length > 0 
-                    ? <MurderSummary murders={murders}></MurderSummary>
-                    : <p className='text-center fw-bold text-danger'>No murders yet!</p> 
+                    ?   <MurderSummary murders={murders}></MurderSummary>
+                    :   <div className='text-center my-3'>
+                            <button type="button" className="btn btn-outline-danger text-center" data-bs-toggle="modal" data-bs-target="#murderSummary" disabled>
+                                No murders yet!
+                            </button>
+                        </div>
                 }
 
                 <Summary player={player} items={items} rooms={rooms}></Summary>

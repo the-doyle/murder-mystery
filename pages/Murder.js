@@ -60,8 +60,8 @@ export default function Murder(props) {
     }
 
     return !props.diversions ? null : (
-        <div>
-            <div className='col-12 mt-3'>
+        <div className='col-6 mt-3'>
+            <div className='col-6'>
                 <button type="button" className="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#murder" disabled={!murderEnabled}>
                 Murder someone
                 </button>

@@ -49,7 +49,7 @@ export default function MurderSummary(props) {
                                 <div key={murder.id} className='col-12 p-3 bg-light shadow rounded-3 my-3'>
                                     <p className='text-danger fs-5'>
                                         <span className='fw-bold'>{murder.targetName} </span>
-                                        has been murdered! 
+                                        is dead.  
                                     </p>
                                     <p><span className='fw-bold'>Weapon: </span>{murder.weapon}</p>
                                     <p><span className='fw-bold'>Diversion: </span>{murder.diversion}</p>
