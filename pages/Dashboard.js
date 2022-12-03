@@ -10,7 +10,7 @@ import MurderSummary from './MurderSummary'
 export default function Dashboard() {
     const user = useUser()
     const [rooms, setRooms] = useState([])
-    const [player, setPlayer] = useState({'rooms': []})
+    const [player, setPlayer] = useState({'rooms': [], 'objectives': []})
     const [items, setItems] = useState([])
     const[alert, setAlert] = useState()
     const[alertClass, setAlertClass] = useState("d-none")
@@ -119,7 +119,7 @@ export default function Dashboard() {
                 </div>
             
                 <div className='row mb-5 p-3'>
-                    <div className='col-12 mb-2'>
+                    <div className='col-12 mb-3'>
                         <h4>Quick Actions</h4>
                     </div>
 
@@ -164,15 +164,33 @@ export default function Dashboard() {
                 </div>
 
                 <div className='row my-3 p-3'>
-                    <div className='col-12 mb-2'>
-                        <h4>My Stuff</h4>
+                    <div className='col-12'>
+                        <h4>My Objectives</h4>
+                    </div>
+
+                    {player.objectives.length > 0
+                        ?   <div className='col-12 bg-light shadow rounded-3 p-3 my-3'>
+                                <ul>
+                                    <li>{player.objectives[0]} <span className="badge rounded-pill bg-dark mx-1">main</span></li>
+                                    <li>{player.objectives[1]} <span className="badge rounded-pill bg-info mx-1">secondary</span> </li>
+                                </ul>
+                            </div>
+                        :   <p>Loading...</p>
+                    }
+
+                    
+                </div>
+
+                <div className='row my-3 p-3'>
+                    <div className='col-12'>
+                        <h4>My Room</h4>
                     </div>
 
                     <Room items={items} player={player} disableUsed={true}></Room>
                 </div>
 
                 <div className='row my-3 p-3'>
-                    <div className='col-12 mb-2'>
+                    <div className='col-12'>
                         <h4>Unlocked Rooms</h4>
                     </div>
 

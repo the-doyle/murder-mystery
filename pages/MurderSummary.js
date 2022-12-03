@@ -39,7 +39,7 @@ export default function MurderSummary(props) {
             <div className='container-fluid collapse' id='murderSummary'>
 
                 <div className='row mb-3 p-3'>
-                    <div className='col-12 mb-2 p-3'>
+                    <div className='col-12 p-3'>
                         <h4>All Murders</h4>
                     </div>
 
